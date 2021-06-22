@@ -91,4 +91,8 @@ if __name__=="__main__":
     geo_api_info=str(config['location'])
     data=config['form'] 
     msg=submit(cookie,data,geo_api_info,province,city)
-    info_push(config['wechat_api']['corpid'],config['wechat_api']['Secret'],config['wechat_api']['user'],msg)
+    #企业微信号消息推送，需要消息推送应用api相关信息
+    try:
+        info_push(config['wechat_api']['corpid'],config['wechat_api']['Secret'],config['wechat_api']['user'],msg)
+    except:
+        print("failed push")
