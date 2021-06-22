@@ -3,6 +3,8 @@ from urllib import parse
 from http import cookiejar
 import json
 import time
+import gzip
+
 def submit(cookie,data,geo_api_info,province,city):
     url="https://m.ruc.edu.cn/ncov/wap/default/save"
     headers={"Cookie":cookie}
@@ -47,26 +49,28 @@ def login(username,password):
     "username": username,
     "password": password
     }
+    header={
+        "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+        "Accept": "application/json, text/javascript, */*; q=0.01",
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.1 Safari/605.1.15",
+        "X-Requested-With": "XMLHttpRequest"
+    }
     data=bytes(parse.urlencode(data),encoding="utf8")
-    #cookie=cookiejar.CookieJar()
-    #handler=rq.HTTPCookieProcessor(cookie)
-    #opener=rq.build_opener(handler)
-    req = rq.Request(url=url, data=data, method='POST')
-    rep=rq.urlopen(req)
-    rep=rep.read().decode('utf-8')
-    loged=false
+    cookie=cookiejar.CookieJar()
+    handler=rq.HTTPCookieProcessor(cookie)
+    opener=rq.build_opener(handler)
+    req = rq.Request(url=url, data=data,headers=header, method='POST')
+    rep=opener.open(req)
+    rep= rep.read().decode('utf-8')
+    #print(rep)
+    cookie_s=""
     try:
-        if json.loads(req)['e']==0:
-            loged=true
+        msg=json.loads(rep)
+        if msg['e']==0:
+            for item in cookie:
+                cookie_s+=item.name+"="+item.value+';'
     except:
-        loged=false
-    if ~loged:
-        return None
-    #print(response.read().decode('utf-8'))
-    cookie_s=[]
-    for item in cookie:
-        cookie_s.append(item.name+"="+item.value)
-    cookie_s=";".join(cookie_s)
+        cookie_s=None
     print(cookie_s)
     return cookie_s
 
