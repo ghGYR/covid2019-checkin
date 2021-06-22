@@ -48,11 +48,12 @@ def login(username,password):
     "password": password
     }
     data=bytes(parse.urlencode(data),encoding="utf8")
-    cookie=cookiejar.CookieJar()
-    handler=rq.HTTPCookieProcessor(cookie)
-    opener=rq.build_opener(handler)
+    #cookie=cookiejar.CookieJar()
+    #handler=rq.HTTPCookieProcessor(cookie)
+    #opener=rq.build_opener(handler)
     req = rq.Request(url=url, data=data, method='POST')
-    req=req.read().decode('utf-8')
+    rep=rq.urlopen(req)
+    rep=rep.read().decode('utf-8')
     loged=false
     try:
         if json.loads(req)['e']==0:
