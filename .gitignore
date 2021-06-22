@@ -1,2 +1,5 @@
 .vscode
 .DS_Store
+local_test.py
+config_me.json
+.pyc
