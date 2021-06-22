@@ -4,15 +4,20 @@ from http import cookiejar
 import json
 import time
 import gzip
-
+header={
+        "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+        "Accept": "application/json, text/javascript, */*; q=0.01",
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.1 Safari/605.1.15",
+        "X-Requested-With": "XMLHttpRequest"
+    }
 def submit(cookie,data,geo_api_info,province,city):
     url="https://m.ruc.edu.cn/ncov/wap/default/save"
-    headers={"Cookie":cookie}
+    header["Cookie"]=cookie
     data['geo_api_info']=geo_api_info
     data['province']=province
     data['area']=province+" "+city
     data=bytes(parse.urlencode(data),encoding="utf8")
-    req = rq.Request(url=url, data=data, headers=headers, method='POST')
+    req = rq.Request(url=url, data=data, headers=header, method='POST')
     req = rq.urlopen(req)
     req=req.read().decode('utf-8')
     print(req)
@@ -48,12 +53,6 @@ def login(username,password):
     data={
     "username": username,
     "password": password
-    }
-    header={
-        "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
-        "Accept": "application/json, text/javascript, */*; q=0.01",
-        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.1 Safari/605.1.15",
-        "X-Requested-With": "XMLHttpRequest"
     }
     data=bytes(parse.urlencode(data),encoding="utf8")
     cookie=cookiejar.CookieJar()
