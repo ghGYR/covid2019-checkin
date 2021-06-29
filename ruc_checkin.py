@@ -97,4 +97,4 @@ if __name__=="__main__":
     b64string=sys.argv[1]
     jstring=base64.b64decode(b64string)
     config=json.loads(jstring)
-   
+    checkin(config)
