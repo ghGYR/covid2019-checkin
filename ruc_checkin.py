@@ -73,13 +73,7 @@ def login(username,password):
     print(cookie_s)
     return cookie_s
 
-if __name__=="__main__":
-    import sys
-    import json
-    import base64
-    b64string=sys.argv[1]
-    jstring=base64.b64decode(b64string)
-    config=json.loads(jstring)
+def checkin(config):
     cookie=config['cookie']
     if cookie=="":
         cookie=login(config['username'],config['password'])
@@ -96,3 +90,11 @@ if __name__=="__main__":
         info_push(config['wechat_api']['corpid'],config['wechat_api']['Secret'],config['wechat_api']['user'],msg)
     except:
         print("failed push")
+if __name__=="__main__":
+    import sys
+    import json
+    import base64
+    b64string=sys.argv[1]
+    jstring=base64.b64decode(b64string)
+    config=json.loads(jstring)
+   
