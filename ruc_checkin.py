@@ -18,13 +18,13 @@ def submit(cookie,data,geo_api_info,province,city):
     data['area']=province+" "+city
     data=bytes(parse.urlencode(data),encoding="utf8")
     req = rq.Request(url=url, data=data, headers=header, method='POST')
-    req = rq.urlopen(req)
-    req=req.read().decode('utf-8')
-    print(req)
     try:
+        req = rq.urlopen(req)
+        req=req.read().decode('utf-8')
+        print(req)
         msg=json.loads(req)['m']
     except:
-        msg="need update cookie"
+        msg="error happened"
     return msg
 
 def info_push(corpid,Secret,user,msg):
