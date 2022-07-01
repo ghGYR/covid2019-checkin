@@ -1,0 +1,61 @@
+{
+    "username": "",
+    "password": "",
+    "cookie": "",
+    "wechat_api": {
+        "Secret": "",
+        "corpid": "",
+        "user": ""
+    },
+    "form": { 
+        "sfzx": 1, 
+        "fxyy":"开学报到，正常返校",
+        "xjzd":"校内",
+        "sfzgn": 1, 
+        "zgfxdq": 0, 
+        "tw": 2,
+        "jcjgqr": 0, 
+        "sfcxtz": 0, 
+        "sfjcbh": 0,
+        "mjry": 0, 
+        "csmjry": 0, 
+        "sfcyglq": 0,
+        "szsqsfybl": 0,
+        "sfcxzysx": 0
+    },
+    "location": {
+        "type": "complete",
+        "position": {
+            "Q": "",
+            "R": "",
+            "lng": "",
+            "lat": ""
+        },
+        "location_type": "html5",
+        "message": "Get geolocation success.Convert Success.Get address success.",
+        "accuracy": 65,
+        "isConverted": true,
+        "status": 1,
+        "addressComponent": {
+            "citycode": "",
+            "adcode": "",
+            "businessAreas": [],
+            "neighborhoodType": "",
+            "neighborhood": "",
+            "building": "",
+            "buildingType": "",
+            "street": "",
+            "streetNumber": "",
+            "country": "",
+            "province": "",
+            "city": "",
+            "district": "",
+            "township": ""
+        },
+        "formattedAddress": "",
+        "roads": [],
+        "crosses": [],
+        "pois": [],
+        "info": "SUCCESS"
+    }
+}
